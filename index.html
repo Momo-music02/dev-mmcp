@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+        <style>
+            .mode-switch {
+                position: absolute;
+                top: 1.5em;
+                right: 2em;
+                background: none;
+                border: 1px solid #555;
+                border-radius: 20px;
+                padding: 0.4em 1.2em;
+                color: inherit;
+                cursor: pointer;
+                font-size: 1em;
+                transition: background 0.2s, color 0.2s;
+            }
+            .mode-switch:hover {
+                background: #3332;
+            }
+        </style>
     <meta charset="UTF-8">
     <title>Accueil Développement MMCP</title>
     <link rel="stylesheet" href="style.css">
@@ -9,6 +27,7 @@
     <script defer src="animations.js"></script>
 </head>
 <body>
+        <button class="mode-switch" id="modeSwitch">🌙 Mode sombre</button>
     <header>
         <h1>Développement MMCP</h1>
         <nav>
@@ -24,37 +43,54 @@
     <main>
         <section>
             <h2>Bienvenue sur l’espace développeur MMCP</h2>
-            <p>Ce site regroupe toutes les infos pour comprendre, modifier et déployer le distributeur musical Morgann Music CP.<br>Découvre comment sont intégrés Firebase, Cloudflare, Apps Script, et comment déployer le projet.</p>
+            <p>Ce site regroupe toutes les informations pour comprendre, modifier et déployer le distributeur musical Morgann Music CP.<br>Découvre comment chaque technologie s’intègre dans le projet et accède à la documentation détaillée.</p>
         </section>
         <section>
-            <h2>Explorer les technologies</h2>
-            <div class="btn-group">
-                <button class="theme-btn" onclick="window.location='firebase.html'">Firebase</button>
-                <button class="theme-btn" onclick="window.location='cloudflare.html'">Cloudflare</button>
-                <button class="theme-btn" onclick="window.location='apps-script.html'">Apps Script</button>
-                <button class="theme-btn" onclick="window.location='deploiement.html'">Déploiement</button>
-            </div>
+            <h2>Firebase</h2>
+            <p>Firebase gère l’authentification, la base de données (Firestore), le stockage des fichiers et l’hébergement du site. Il permet une gestion sécurisée et scalable des utilisateurs, des releases et des médias.</p>
+            <button class="theme-btn" onclick="window.location='firebase.html'">Voir l’intégration Firebase</button>
         </section>
         <section>
-            <h2>Exemple de code</h2>
-            <pre class="code-block"><code class="language-js">// Exemple d’appel à Firestore
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-const db = getFirestore();
-const docRef = doc(db, "users", "userId");
-const docSnap = await getDoc(docRef);
-if (docSnap.exists()) {
-  console.log("Données:", docSnap.data());
-} else {
-  console.log("Aucune donnée trouvée");
-}
-</code></pre>
+            <h2>Cloudflare</h2>
+            <p>Cloudflare protège le site contre les attaques, optimise la rapidité grâce à son CDN, gère le DNS et permet d’utiliser des Workers pour des fonctions avancées (redirections, cache, sécurité).</p>
+            <button class="theme-btn" onclick="window.location='cloudflare.html'">Voir l’intégration Cloudflare</button>
         </section>
         <section>
-            <h2>Coloration syntaxique</h2>
-            <p>Les exemples de code sont colorés comme dans VS Code pour une meilleure lisibilité.</p>
+            <h2>Google Apps Script</h2>
+            <p>Apps Script automatise des tâches (emails, génération de documents, chat AI) et expose des API personnalisées pour MMCP. Les scripts sont connectés au front-end via des requêtes HTTP sécurisées.</p>
+            <button class="theme-btn" onclick="window.location='apps-script.html'">Voir l’intégration Apps Script</button>
+        </section>
+        <section>
+            <h2>Déploiement</h2>
+            <p>Le déploiement du site se fait via Firebase Hosting, avec gestion du code sur GitHub et sécurisation Cloudflare. Toutes les étapes sont documentées pour faciliter la mise à jour et la maintenance.</p>
+            <button class="theme-btn" onclick="window.location='deploiement.html'">Voir le guide de déploiement</button>
         </section>
     </main>
     <footer>
+            <script>
+            // Mode clair/sombre
+            const modeSwitch = document.getElementById('modeSwitch');
+            function setTheme(dark) {
+                if (dark) {
+                    document.body.classList.add('dark');
+                    document.body.classList.remove('light');
+                    modeSwitch.textContent = '☀️ Mode clair';
+                } else {
+                    document.body.classList.add('light');
+                    document.body.classList.remove('dark');
+                    modeSwitch.textContent = '🌙 Mode sombre';
+                }
+            }
+            function getTheme() {
+                return localStorage.getItem('theme') || 'dark';
+            }
+            setTheme(getTheme() === 'dark');
+            modeSwitch.onclick = () => {
+                const isDark = document.body.classList.contains('dark');
+                setTheme(!isDark);
+                localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+            };
+            </script>
         <p>&copy; 2026 Morgann Music CP</p>
     </footer>
 </body>
