@@ -2,6 +2,67 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title>Accueil Développement MMCP</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="animations.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Développement MMCP</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="firebase.html">Firebase</a></li>
+                <li><a href="cloudflare.html">Cloudflare</a></li>
+                <li><a href="apps-script.html">Apps Script</a></li>
+                <li><a href="deploiement.html">Déploiement</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Bienvenue sur l’espace développeur MMCP</h2>
+            <p>Ce site regroupe toutes les infos pour comprendre, modifier et déployer le distributeur musical Morgann Music CP.<br>Découvre comment sont intégrés Firebase, Cloudflare, Apps Script, et comment déployer le projet.</p>
+        </section>
+        <section>
+            <h2>Explorer les technologies</h2>
+            <div class="btn-group">
+                <button class="theme-btn" onclick="window.location='firebase.html'">Firebase</button>
+                <button class="theme-btn" onclick="window.location='cloudflare.html'">Cloudflare</button>
+                <button class="theme-btn" onclick="window.location='apps-script.html'">Apps Script</button>
+                <button class="theme-btn" onclick="window.location='deploiement.html'">Déploiement</button>
+            </div>
+        </section>
+        <section>
+            <h2>Exemple de code</h2>
+            <pre class="code-block"><code class="language-js">// Exemple d’appel à Firestore
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+const db = getFirestore();
+const docRef = doc(db, "users", "userId");
+const docSnap = await getDoc(docRef);
+if (docSnap.exists()) {
+  console.log("Données:", docSnap.data());
+} else {
+  console.log("Aucune donnée trouvée");
+}
+</code></pre>
+        </section>
+        <section>
+            <h2>Coloration syntaxique</h2>
+            <p>Les exemples de code sont colorés comme dans VS Code pour une meilleure lisibilité.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Morgann Music CP</p>
+    </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
     <title>Développement MMCP</title>
     <link rel="stylesheet" href="style.css">
 </head>
