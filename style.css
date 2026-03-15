@@ -1,11 +1,33 @@
 /* Style général + VS Code-like pour les blocs de code */
 body {
-    font-family: 'Segoe UI', 'Fira Mono', 'Menlo', 'Consolas', monospace;
+    font-family: Helvetica, Arial, 'Segoe UI', 'Fira Mono', 'Menlo', 'Consolas', monospace;
     margin: 0;
     padding: 0;
     background: #1e1e1e;
     color: #d4d4d4;
     transition: background 0.3s, color 0.3s;
+}
+@media (prefers-color-scheme: light) {
+    body:not(.dark):not(.light) {
+        background: #f7f7f7;
+        color: #23272e;
+    }
+    header, footer, section {
+        background: #fff;
+        color: #23272e;
+        box-shadow: 0 2px 8px #0001;
+    }
+    .theme-btn {
+        background: #23272e;
+        color: #fff;
+    }
+    .theme-btn:hover {
+        background: #007acc;
+    }
+    .code-block {
+        background: #f3f3f3;
+        color: #23272e;
+    }
 }
 body.light {
     background: #f7f7f7;
